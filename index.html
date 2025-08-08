@@ -1,1 +1,652 @@
-docs
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Documentation</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #1e1e1e;
+        color: #ddd;
+        line-height: 1.6;
+        position: relative;
+        min-height: 100vh;
+      }
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        text-align: center;
+      }
+      h1 {
+        color: #66d9ef;
+        margin-bottom: 30px;
+      }
+      .endpoint {
+        margin-bottom: 40px;
+      }
+      .endpoint button {
+        display: block;
+        width: 100%;
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        background-color: transparent;
+        color: #ddd;
+        font-size: 16px;
+        cursor: pointer;
+        animation: colorBorder 5s infinite linear alternate;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      }
+      .endpoint h2 {
+        display: inline-block;
+        margin: 0;
+        color: #66d9ef;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      .endpoint p {
+        margin: 10px 0;
+        color: #ddd;
+      }
+      .parameter {
+        margin-left: 20px;
+        color: #aaa;
+      }
+      body {
+        background-color: #282a36;
+        color: #f8f8f2;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #282a36;
+        color: #8be9fd;
+        border: 2px solid #8be9fd;
+        border-radius: 5px;
+      }
+      pre {
+        background-color: #44475a;
+        border: 1px solid #8be9fd;
+        padding: 15px;
+        color: #f8f8f2;
+        font-size: 14px;
+        margin: 20px;
+        margin-top: 0;
+        border-radius: 5px;
+        display: none;
+        white-space: pre-wrap;
+        animation: colorBorder 5s infinite linear alternate;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        overflow-x: auto;
+        overflow-wrap: auto;
+      }
+      h4 {
+        margin: 0 0 10px 0;
+        font-size: 16px;
+        color: #f8f8f2;
+      }
+      .code-container {
+        margin-top: 25px;
+      }
+      .name button {
+        font-family: "Times New Roman", Times, serif;
+        font-weight: lighter;
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+        background-color: #1e1e1e;
+        display: inline-block;
+        position: relative;
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        height: auto;
+        width: auto;
+        overflow: auto;
+        cursor: pointer;
+        animation: colorBorder 5s infinite linear alternate;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        box-sizing: border-box;
+      }
+      .api-docs button {
+        font-family: "Times New Roman", Times, serif;
+        font-weight: lighter;
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+        background-color: #1e1e1e;
+        display: inline-block;
+        position: relative;
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        border: 2px solid transparent;
+        border-radius: 5px;
+        height: auto;
+        width: auto;
+        overflow: auto;
+        cursor: pointer;
+        animation: colorBorder 5s infinite linear alternate;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        box-sizing: border-box;
+      }
+      footer {
+        font-size: 17px;
+        text-align: center;
+        margin-top: auto;
+        margin-bottom: 20px;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      .name::after {
+        content: attr(data-text);
+        position: relative;
+        left: 0;
+        white-space: nowrap;
+        animation: typing 3s steps(40, end);
+      }
+      .api-docs::after {
+        content: attr(data-text);
+        position: relative;
+        left: 0;
+        white-space: nowrap;
+        animation: typing 3s steps(40, end);
+      }
+      @keyframes cursor {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+
+      @keyframes colorBorder {
+        0% {
+          border-color: #ff79c6;
+        }
+        25% {
+          border-color: #8be9fd;
+        }
+        50% {
+          border-color: #50fa7b;
+        }
+        75% {
+          border-color: #ffb86c;
+        }
+        100% {
+          border-color: #bd93f9;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>API Documentation</h1>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/sim/ask?message=hi')"
+          style="border-color: #8be9fd"
+        >
+          SIM
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToFfEndpoint('/wishlist', 'Uid here')"
+          style="border-color: #ffb86c"
+        >
+          Wishlist
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToFfEndpoint('/craftlandProfile', 'Uid here')"
+          style="border-color: #50fa7b"
+        >
+          Craftland Profile
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToFfEndpoint('/playerStats', 'Uid here')"
+          style="border-color: #bd93f9"
+        >
+          Player Stats
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToFfEndpoint('/accountInfo', 'Uid here')"
+          style="border-color: #ff79c6"
+        >
+          Account Info
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/fbdl?url=https://www.facebook.com/reel/3466152902326858')"
+          style="border-color: #8be9fd"
+        >
+          FBDL
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/fbdl2?url=https://www.facebook.com/reel/3466152902326858')"
+          style="border-color: #8be9fd"
+        >
+          FBDL2
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/alldl?url=https://www.facebook.com/reel/3466152902326858')"
+          style="border-color: #8be9fd"
+        >
+          ALLDL
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/unsplash/search?q=cat&limit=5&page=1')"
+          style="border-color: #8be9fd"
+        >
+          UNSPLASH IMAGE SEARCH
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/unsplash/random')"
+          style="border-color: #8be9fd"
+        >
+          UNSPLASH RANDOM IMAGE
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/unsplash/imginfo/lxtdL_rIiCE')"
+          style="border-color: #8be9fd"
+        >
+          UNSPLASH IMAGE INFO
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/pexels?query=cat&limit=5&pageNumber=1&apiKey=4S1Fx69')"
+          style="border-color: #8be9fd"
+        >
+          PEXELS IMAGE SEARCH
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/pin?q=cat&apiKey=4S1Fx69')"
+          style="border-color: #8be9fd"
+        >
+          PINTEREST IMAGE SEARCH
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/tinyurl?url=https://google.com/')"
+          style="border-color: #ff79c6"
+        >
+          TINYURL
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/shorturl?url=https://google.com/&alias=google')"
+          style="border-color: #ff79c6"
+        >
+          URL SHORTENER
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/scrape?url=https://google.com/')"
+          style="border-color: #8be9fd"
+        >
+          SCRAPE
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/gethtml?url=https://messenger.com/')"
+          style="border-color: #8be9fd"
+        >
+          GET HTML
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/2fa?key=(2fa)')"
+          style="border-color: #8be9fd"
+        >
+          2FA
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/lovecalculator?boyName=Unknown&girlName=Unknown&apiKey=4S1Fx69')"
+          style="border-color: #8be9fd"
+        >
+          LOVE CALCULATOR
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/genshinch?name=furina')"
+          style="border-color: #8be9fd"
+        >
+          GENSHINCH
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/flagGame?type=random')"
+          style="border-color: #8be9fd"
+        >
+          FLAG GAME
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/t2b?input=Hello World&apiKey=4S1Fx69')"
+          style="border-color: #8be9fd"
+        >
+          TEXT TO BINARY
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/b2t?input=01101000 01100101 01101100 01101100 01101111 00100000 01110111 01101111 01110010 01101100 01100100&apiKey=4S1Fx69')"
+          style="border-color: #8be9fd"
+        >
+          BINARY TO TEXT
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/b&w?imageUrl=https://i.ibb.co/5rdCMR3/image.jpg&apiKey=4S1Fx69')"
+          style="border-color: #8be9fd"
+        >
+          IMAGE TO BLACK AND WHITE
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/hentai?type=random')"
+          style="border-color: #8be9fd"
+        >
+          HENTAI
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/hentai?type=index&indexNumber=1')"
+          style="border-color: #8be9fd"
+        >
+          HENTAI BY INDEX
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/blur?url=https://images.unsplash.com/photo-1715199227073-ccf5e6ed7f1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MDIzMjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTU0MjM5MzR8&ixlib=rb-4.0.3&q=80&w=1080&blurLevel=5&apiKey=4S1Fx69')"
+          style="border-color: #8be9fd"
+        >
+          IMAGE TO BLUR
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/sharpen?imageUrl=https://images.unsplash.com/photo-1715199227073-ccf5e6ed7f1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MDIzMjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTU0MjM5MzR8&ixlib=rb-4.0.3&q=80&w=1080&sigma=()&apiKey=4S1Fx69')"
+          style="border-color: #8be9fd"
+        >
+          IMAGE TO SHARPEN
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/grayscale?imageUrl=https://images.unsplash.com/photo-1715199227073-ccf5e6ed7f1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MDIzMjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTU0MjM5MzR8&ixlib=rb-4.0.3&q=80&w=1080&apiKey=4S1Fx69')"
+          style="border-color: #8be9fd"
+        >
+          IMAGE TO GRAYSCALE
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/resize?url=https://images.unsplash.com/photo-1715199227073-ccf5e6ed7f1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MDIzMjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTU0MjM5MzR8&ixlib=rb-4.0.3&q=80&w=1080&width=1024&height=1024&apiKey=4S1Fx69')"
+          style="border-color: #8be9fd"
+        >
+          IMAGE RESIZER
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/imgur?url=https://images.unsplash.com/photo-1714164801505-b84a29d2eebb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MDIzMjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTU0MjQ1MDd8&ixlib=rb-4.0.3&q=80&w=1080')"
+          style="border-color: #8be9fd"
+        >
+          IMGUR
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/imgbb?imgUrl=https://images.unsplash.com/photo-1714164801505-b84a29d2eebb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MDIzMjZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTU0MjQ1MDd8&ixlib=rb-4.0.3&q=80&w=1080')"
+          style="border-color: #8be9fd"
+        >
+          IMGBB
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/imgbb/image/:id')"
+          style="border-color: #8be9fd"
+        >
+          IMGBB IMAGE ID TO IMAGE DATA
+        </button>
+      </div>
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/gist')"
+          style="border-color: #8be9fd"
+        >
+          GISTBIN
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/album/list')"
+          style="border-color: #8be9fd"
+        >
+          ALBUM LIST
+        </button>
+      </div>
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/album/add[type]?url=Video_URL')"
+          style="border-color: #8be9fd"
+        >
+          ADD VIDEOS TO ALBUM
+        </button>
+      </div>
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/album/random?type=VideoType')"
+          style="border-color: #8be9fd"
+        >
+          GET VIDEO FROM ALBUM
+        </button>
+      </div>
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/album/remove?url=VideoUrlToRemove')"
+          style="border-color: #8be9fd"
+        >
+          REMOVE VIDEO FROM ALBUM
+        </button>
+      </div>
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/album/video/:type?indexNumber=1')"
+          style="border-color: #8be9fd"
+        >
+          GET VIDEO BY TYPE & IndexNumber
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/sim/teach?ask=hi&ans=bolo, kichu bolba?, dakcho keno go')"
+          style="border-color: #8be9fd"
+        >
+          SIM TEACH
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/sim/get?ask=hi&apiKey=4S1Fx69')"
+          style="border-color: #8be9fd"
+        >
+          LIST ANS BY ASK FROM SIM
+        </button>
+      </div>
+
+      <div class="endpoint">
+        <button
+          onclick="navigateToEndpoint('/sim/list')"
+          style="border-color: #8be9fd"
+        >
+          SIM LIST
+        </button>
+      </div>
+      <div class="endpoint">
+        <button
+          onclick="togglePre('runmockyCode')"
+          style="border-color: #8be9fd"
+        >
+          RUNMOCKY
+        </button>
+        <button onclick="togglePre('pasteCode')" style="border-color: #8be9fd">
+          PASTECODE
+        </button>
+      </div>
+      <div class="code-container">
+        <pre id="runmockyCode">
+            <h4>- Make a POST request to /runmocky</h4>
+            Here's an example request:
+            <code>
+            const axios = require('axios');
+            const response = await axios.post('https://www.nubs-apis.000.pe/runmocky', { content: encodeURIComponent(code) });
+            const data = response.data;
+            </code>
+                    </pre>
+        <pre id="pasteCode">
+            <h4>- Make a POST request to /saveCode</h4>
+            Here's an example request:
+            <code>
+            const axios = require('axios');
+            const response = await axios.post('https://www.nubs-apis.000.pe/saveCode', { code: encodeURIComponent(code), fileName: encodeURIComponent(fileName) });
+            const data = response.data;
+            </code>
+                    </pre>
+      </div>
+      <div class="api-docs">
+        <button
+          onclick="window.location.href='https://www.nubs-apis.000.pe/api-docs/'"
+          style="border-color: #ff90a3"
+        >
+          API DOCS
+        </button>
+      </div>
+      <div class="name">
+        <button
+          onclick="window.location.href='https://www.nubs-apis.000.pe/'"
+          style="border-color: #8be9fd"
+        >
+          AUTHOR INFO
+        </button>
+      </div>
+    </div>
+    <script>
+      function navigateToEndpoint(endpoint) {
+        var baseURL = "https://www.noobs-apis.42web.io";
+        var url = baseURL + endpoint;
+        window.location.href = url;
+      }
+      function navigateToFfEndpoint(endpoint, uid) {
+        var baseURL = "https://www.noobs-apis.42web.io";
+        var url = baseURL + endpoint;
+        window.location.href = `${endpoint}?uid=${uid}`;
+      }
+      function togglePre(preId) {
+        const preElement = document.getElementById(preId);
+        if (
+          preElement.style.display === "none" ||
+          preElement.style.display === ""
+        ) {
+          preElement.style.display = "block";
+        } else {
+          preElement.style.display = "none";
+        }
+      }
+    </script>
+
+    <footer>
+      <p>&copy; 2024 Mohammad Asif. All rights reserved.</p>
+    </footer>
+  </body>
+  </html>
